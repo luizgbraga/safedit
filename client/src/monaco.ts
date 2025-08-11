@@ -4,8 +4,11 @@ import { api } from './api';
 import { ws } from './socket';
 import { CRDTOp, DeleteOp, InsertOp, reduceOps } from './crdt';
 import debounce from 'lodash.debounce';
+import { Semaphore } from './utils';
 
 let editor: monaco.editor.IStandaloneCodeEditor | undefined;
+
+const remoteUpdateSemaphore = new Semaphore();
 
 let crdtOpBuffer: CRDTOp[] = [];
 
@@ -14,7 +17,7 @@ const flushCRDTOps = debounce(() => {
   const reduced = reduceOps(crdtOpBuffer);
   reduced.forEach((op) => ws.sendCRDTOp(op));
   crdtOpBuffer = [];
-}, 10); // TODO: make it work with higher debounces
+}, 1000);
 
 const getChangeType = (change: monaco.editor.IModelContentChangedEvent['changes'][0]) => {
   if (change.text.length > 0 && change.rangeLength === 0) {
@@ -40,6 +43,9 @@ export async function setupMonacoEditor() {
 
   if (editor) {
     editor.onDidChangeModelContent((event) => {
+      if (remoteUpdateSemaphore.isLocked()) {
+        return;
+      }
       event.changes.forEach((change) => {
         const changeType = getChangeType(change);
         if (changeType === 'insert') {
@@ -62,8 +68,10 @@ export async function setupMonacoEditor() {
   ws.subscribeToFileChanges(async (newContent) => {
     if (editor && newContent !== editor.getValue()) {
       const pos = editor.getPosition();
+      remoteUpdateSemaphore.lock();
       editor.setValue(newContent);
       if (pos) editor.setPosition(pos);
+      remoteUpdateSemaphore.unlock();
     }
   });
 }
