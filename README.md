@@ -5,3 +5,4 @@ An experimental Python package and playground for building a local, collaborativ
 pip install -e .
 safedit [path]
 ```
+<img width="1465" height="823" alt="image" src="https://github.com/user-attachments/assets/0127f63f-1af8-4d3d-8895-7de74c32ec63" />
