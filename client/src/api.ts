@@ -9,6 +9,7 @@ export class Api {
 
   async getContent(): Promise<string> {
     try {
+      console.log(`${this.baseUrl}/file`);
       const res = await fetch(`${this.baseUrl}/file`);
       if (!res.ok) return '';
       const data = await res.json();

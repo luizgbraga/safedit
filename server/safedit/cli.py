@@ -6,9 +6,9 @@ app = typer.Typer()
 
 
 @app.command()
-def main(path: str, tabs: int = 1, port: int = None):
-    """Start safedit server and open N clients."""
-    start_server(path, tabs, port)
+def main(path: str, port: int = None):
+    """Start safedit server"""
+    start_server(path, port)
 
 
 if __name__ == "__main__":

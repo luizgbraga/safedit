@@ -50,9 +50,7 @@ class LSEQIdentifier:
 
 class CRDTManager:
     def __init__(self, file_path: Optional[Path] = None) -> None:
-        self.chars: List[
-            Tuple[LSEQIdentifier, str]
-        ] = []
+        self.chars: List[Tuple[LSEQIdentifier, str]] = []
         self.site_id: int = 1  # TODO: assign unique site id per client
         self.counter: int = 0
         if file_path:
