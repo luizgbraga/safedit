@@ -69,7 +69,16 @@ export async function setupMonacoEditor() {
     if (editor && newContent !== editor.getValue()) {
       const pos = editor.getPosition();
       remoteUpdateSemaphore.lock();
-      editor.setValue(newContent);
+      const model = editor.getModel();
+      if (model && crdtOpBuffer.length === 0) {
+        editor.executeEdits('remote-update', [
+          {
+            range: model.getFullModelRange(),
+            text: newContent,
+            forceMoveMarkers: true,
+          },
+        ]);
+      }
       if (pos) editor.setPosition(pos);
       remoteUpdateSemaphore.unlock();
     }
