@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: safedit
+Version: 0.1.0
+Summary: Multi-client collaborative file editor with CRDT demo
+Home-page: https://github.com/yourusername/safedit
+Author: Your Name
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: watchdog
+Requires-Dist: python-socketio
+Requires-Dist: typer
+Dynamic: author
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary

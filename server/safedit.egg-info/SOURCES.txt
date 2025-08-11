@@ -1,0 +1,13 @@
+MANIFEST.in
+setup.py
+safedit/__init__.py
+safedit/cli.py
+safedit/crdt.py
+safedit/server.py
+safedit/watcher.py
+safedit.egg-info/PKG-INFO
+safedit.egg-info/SOURCES.txt
+safedit.egg-info/dependency_links.txt
+safedit.egg-info/entry_points.txt
+safedit.egg-info/requires.txt
+safedit.egg-info/top_level.txt

@@ -1,0 +1,9 @@
+.venv
+.ruff_cache
+.vscode
+.claude
+.env
+abuble.txt
+node_modules
+abuble.txt
+__pycache__
