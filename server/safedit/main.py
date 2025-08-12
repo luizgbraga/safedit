@@ -16,7 +16,18 @@ DEFAULT_PORT = 8001
 
 def start_server(path: str, port: int | None = None):
     """Start the FastAPI + Socket.IO server with file watching."""
-    state.file_path = str(Path(path).resolve())
+    file_path = Path(path).resolve()
+
+    if not file_path.exists():
+        print(f"File does not exist. Creating new file: {file_path}")
+        try:
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            file_path.write_text("", encoding="utf-8")
+        except Exception as e:
+            print(f"[ERROR] Could not create file {file_path}: {e}")
+            return
+
+    state.file_path = str(file_path)
     port = port or DEFAULT_PORT
 
     watcher_thread = threading.Thread(

@@ -2,6 +2,7 @@ import socketio
 
 from .crdt import CRDTOp
 from .state import state
+from .utils import safe_read_text_file
 
 sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins="*")
 
@@ -27,8 +28,9 @@ def notify_file_change():
         return
 
     try:
-        with open(state.file_path, "r", encoding="utf-8") as f:
-            content = f.read()
+        content, success = safe_read_text_file(state.file_path)
+        if not success or content is None:
+            return
 
         old_content = state.crdt_manager.get_content()
 

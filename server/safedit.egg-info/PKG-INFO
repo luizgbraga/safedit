@@ -1,6 +1,6 @@
-Metadata-Version: 2.4
+Metadata-Version: 2.1
 Name: safedit
-Version: 0.1.1
+Version: 0.1.2
 Summary: A collaborative file editor with real-time synchronization using CRDT
 Home-page: https://github.com/luizgbraga/safedit
 Author: Luiz Braga
@@ -29,19 +29,14 @@ Requires-Dist: watchdog>=3.0.0
 Requires-Dist: python-socketio>=5.8.0
 Requires-Dist: typer>=0.9.0
 Requires-Dist: python-multipart>=0.0.6
-Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: description
-Dynamic: description-content-type
-Dynamic: home-page
-Dynamic: keywords
-Dynamic: project-url
-Dynamic: requires-dist
-Dynamic: requires-python
-Dynamic: summary
+
+# safedit
+
+An experimental Python package and playground for building a local, collaborative text editor that merges changes from multiple frontends serving simutaneosly and your OS editor (via file watching) without losing edits or corrupting the file, via LSEQ and CRDT techniques. Used Vue.js + FastAPI.
 
 ```
-pip install -e .
-safedit [path]
+pip install safedit
+safedit path/to/your/file.txt
 ```
+
+<img width="1465" height="823" alt="image" src="https://github.com/user-attachments/assets/0127f63f-1af8-4d3d-8895-7de74c32ec63" />

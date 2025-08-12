@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Literal, Optional, Tuple
 
+from .utils import safe_read_text_file
+
 
 @dataclass
 class CRDTOp:
@@ -54,12 +56,10 @@ class CRDTManager:
         self.site_id: int = 1  # TODO: assign unique site id per client
         self.counter: int = 0
         if file_path:
-            try:
-                content: str = file_path.read_text(encoding="utf-8")
+            content, success = safe_read_text_file(file_path)
+            if success and content is not None:
                 for i, c in enumerate(content):
                     self.chars.append((LSEQIdentifier(i, 0, i), c))
-            except Exception:
-                pass
         # else: empty doc
 
     def get_content(self) -> str:
