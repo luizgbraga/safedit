@@ -11,7 +11,7 @@ from .state import state
 from .utils import get_local_ip
 from .watcher import start_file_watcher
 
-DEFAULT_PORT = 5001
+DEFAULT_PORT = 8001
 
 
 def start_server(path: str, port: int | None = None):
