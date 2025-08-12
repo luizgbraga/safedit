@@ -1,21 +1,47 @@
 Metadata-Version: 2.4
 Name: safedit
-Version: 0.1.0
-Summary: Multi-client collaborative file editor with CRDT demo
-Home-page: https://github.com/yourusername/safedit
-Author: Your Name
-Classifier: Programming Language :: Python :: 3
+Version: 0.1.1
+Summary: A collaborative file editor with real-time synchronization using CRDT
+Home-page: https://github.com/luizgbraga/safedit
+Author: Luiz Braga
+Author-email: your.email@example.com
+Project-URL: Bug Reports, https://github.com/luizgbraga/safedit/issues
+Project-URL: Source, https://github.com/luizgbraga/safedit
+Keywords: editor collaborative real-time crdt websocket
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Text Editors
+Classifier: Topic :: Communications
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
 Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
 Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-Requires-Dist: fastapi
-Requires-Dist: uvicorn
-Requires-Dist: watchdog
-Requires-Dist: python-socketio
-Requires-Dist: typer
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: uvicorn[standard]>=0.20.0
+Requires-Dist: watchdog>=3.0.0
+Requires-Dist: python-socketio>=5.8.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: python-multipart>=0.0.6
 Dynamic: author
+Dynamic: author-email
 Dynamic: classifier
+Dynamic: description
 Dynamic: description-content-type
 Dynamic: home-page
+Dynamic: keywords
+Dynamic: project-url
 Dynamic: requires-dist
+Dynamic: requires-python
 Dynamic: summary
+
+```
+pip install -e .
+safedit [path]
+```
